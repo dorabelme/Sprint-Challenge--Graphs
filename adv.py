@@ -52,19 +52,15 @@ def run_code():
             last_direction = path[-1]
             rooms_visited[player.current_room.id].remove(last_direction)
 
-        # if we've ppossibly reached all the rooms, remove last get_exits(), add it to the traversal path, then travel
+        # if we've reached all the rooms, remove last get_exits(), add it to the traversal path, then travel
         while len(rooms_visited[player.current_room.id]) < 1:
             last_direction = path.pop()
             traversal_path.append(last_direction)
             player.travel(last_direction)
 
-        # get the exits for the current room visited and find last value
         move_direction = rooms_visited[player.current_room.id].pop(0)
-        # go that direction with the append
         traversal_path.append(move_direction)
-        # append to the path
         path.append(directions[move_direction])
-        # travel with the direction of the move
         player.travel(move_direction)
 
     # TRAVERSAL TEST
